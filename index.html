@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zack Vaccaro Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <!-- Sticky Header -->
+    <header id="sticky-header">
+      <div class="sticky-header-left">
+        <h1 class="sticky-title">Zack Vaccaro</h1>
+        <p class="sticky-subtitle">Development Portfolio</p>
+      </div>
+      <div class="sticky-header-right">
+        <button class="hamburger-menu" aria-label="Toggle menu">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="sticky-nav-menu">
+          <button data-target="top">Back to Top</button>
+          <button data-target="projects">Projects</button>
+          <button data-target="about">About Me</button>
+          <button data-target="contact">Skills / Contact</button>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- Animated Header Section -->
+    <div id="large-header" class="large-header">
+    <canvas id="demo-canvas"></canvas>
+    <div class="header-text">
+      <h1 class="main-title">
+        Zack Vaccaro<br>
+        <span class="subtitle">Development Portfolio</span>
+      </h1>
+      <div class="header-buttons">
+        <button data-target="projects">Projects</button>
+        <button data-target="about">About Me</button>
+        <button data-target="skills">Skills</button>
+        <button data-target="contact">Contact</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Project Portfolio Banner -->
+    <div class="portfolio-banner" id="projects">
+      <h2 class="portfolio-banner-title">Projects</h2>
+    </div>
+
+
+    <!-- Carousel Section -->
+    <div class="custom-carousel-container">
+      <div class="carousel-scene">
+        <div class="carousel-cube">
+          <div class="carousel-face front">
+            <img src="Images/OmniListCarousel2.png" alt="Slide 1" style="filter: brightness(0.4); width: 100%; height: 100%; object-fit: contain; background-color: #181f2c;">
+            <div class="carousel-caption">
+              <h5>The OmniList</h5>
+              <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#omniListModal">Details / View Project</button>
+              <p>A Movie, T.V. and Book databse to create your own watch and reading lists.</p>
+            </div>
+          </div>
+          <div class="carousel-face right">
+            <img src="Images/ChelCarousel.png" alt="Slide 2" style="filter: brightness(0.4); width: 100%; height: 100%; object-fit: contain; background-color: #181f2c;">
+            <div class="carousel-caption">
+              <h5>CVLMT Website</h5>
+              <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#cvlmtModal">Details / View Project</button>
+              <p>A full stack developed message therapy site complete with Google API integrated booking system</p>
+            </div>
+          </div>
+          <div class="carousel-face back">
+            <img src="Images/SnippetsCarousel.png" alt="Slide 3" style="filter: brightness(0.7); width: 100%; height: 100%; object-fit: contain; background-color: #181f2c;">
+            <div class="carousel-caption">
+              <h5>Code Snippets</h5>
+              <a href="snippets.html" class="btn btn-outline-light">View Snippets</a>
+              <p>A collection of useful scripts, and funtions collected from various projects</p>
+            </div>
+          </div>
+          <div class="carousel-face left">
+            <img src="Images/PagesCarousel.png" alt="Slide 4" style="filter: brightness(0.4); width: 100%; height: 100%; object-fit: contain; background-color: #181f2c;">
+            <div class="carousel-caption">
+              <h5>Smaller Projects</h5>
+              <a href="projects.html" class="btn btn-outline-light">View Projects</a>
+              <p>A collection of mostly single page projects showcasing various skills.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-indicators">
+          <div class="indicator active" data-slide-index="0"></div>
+          <div class="indicator" data-slide-index="1"></div>
+          <div class="indicator" data-slide-index="2"></div>
+          <div class="indicator" data-slide-index="3"></div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="prev-btn">
+            <img src="Images/ArrowLeft.png">
+        </button>
+        <button class="next-btn">
+          <img src="Images/ArrowRight.png">
+        </button>
+      </div>
+    </div>
+
+    <!-- About Me Section -->
+    <div class="card" id="about">
+      <div class="card-body about-card-body">
+        <h1 class="text-center">About Me</h1>
+        <div class="about-content">
+          <img class="about-image" src="Images/HeadShot.png" alt="Profile Picture">
+          <p>
+            After years in the construction industry, I transitioned my passion for design, structure, and problem-solving into front-end development
+            and user experience design. I build intuitive, visually engaging applications using HTML, CSS, JavaScript, and React, with Python and SQL
+            supporting more dynamic, data-driven functionality. That background taught me how to think practically, communicate clearly, and design
+            solutions that actually work in the real world.
+            I’m especially passionate about creating enjoyable, effortless user experiences that also meet business goals.
+            From wireframing and prototyping in Figma to building responsive, accessible interfaces, I focus on thoughtful UX/UI decisions that make
+            products easy to use and pleasant to interact with. I’ve built full-featured React applications, booking-enabled websites,
+            and smaller projects that highlight clean, efficient code and strong usability.
+            I take pride in writing maintainable, well-tested code, using tools like Jest and modern frameworks to ensure reliability and performance.
+            What drives me most is translating good design into interactive solutions that balance user needs with client objectives—delivering
+            products that feel polished, purposeful, and genuinely useful.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section class="skills-section text-center my-5" id="skills">
+      <div class="skills-grid container">
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+          <p>React</p>
+        </div>
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+          <p>HTML</p>
+        </div>
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+          <p>CSS</p>
+        </div>
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+          <p>JavaScript</p>
+        </div>
+      </div>
+      <div class="skills-grid container mt-4">
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+          <p>Python</p>
+        </div>
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" />
+          <p>SQL</p>
+        </div>
+        <div class="skill-item">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" alt="Jest" />
+  <p>Jest</p>
+</div>
+        <div class="skill-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+          <p>Figma</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Me Footer -->
+    <footer class="footer mt-5 py-4 bg-dark text-white" id="contact">
+      <div class="container text-center">
+        <h4 class="mb-3">Contact Me</h4>
+        <p>Email: <a href="mailto:zcvaccaro@gmail.com" class="text-white text-decoration-underline">zcvaccaro@gmail.com</a></p>
+        <div class="d-flex justify-content-center gap-4 mt-3">
+          <a href="https://github.com/yourusername" target="_blank" class="text-white fs-4">
+            <i class="bi bi-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white fs-4">
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </div>
+        <p class="mt-4 small">&copy; 2025 Zack Vaccaro. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <!-- OmniList Modal -->
+    <div class="modal fade" id="omniListModal" tabindex="-1" aria-labelledby="omniListModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title" id="omniListModalLabel">OmniList</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Welcome to OmniList! I invite you to explore the application by curating your own personal lists of movies, TV shows, and books.
+              This project leverages the browser's Local Storage API to implement client-side persistence, ensuring your data is saved securely
+              on your device across sessions without the need for an external database. As you interact with the application, the 'For You'
+              sections dynamically recalculate based on your stored preferences, demonstrating how local state management can be effectively used to drive a
+              personalized and responsive user experience.</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Multi-API Integration (TMDB, Google Books, NYT)</li>
+                <li>User Authentication & Data Persistence</li>
+                <li>Custom Watchlists & Reading Lists</li>
+                <li>Responsive Design</li>
+            </ul>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+            <a href="https://zcvaccaro.github.io/TheOmniList/" class="btn btn-outline-light" target="_blank">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CVLMT Modal -->
+    <div class="modal fade" id="cvlmtModal" tabindex="-1" aria-labelledby="cvlmtModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title" id="cvlmtModalLabel">CVLMT Website</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>This full-stack web application was designed and built to streamline the booking and client intake process for a massage therapy business.
+              It features a custom scheduling system integrated with Google Calendar, automated email notifications, and a digital intake form.</p>
+            <p><strong>Key Features</strong></p>
+            <ul>
+                <li>Google Calendar Integration: Real-time availability checking and event creation.</li>
+                <li>Interactive Intake Form: Includes a drawable canvas for clients to mark problem areas.</li>
+                <li>Automated Workflows: Handles PDF generation and SMTP email notifications seamlessly.</li>
+            </ul>
+            <p>Please feel free to make a mock booking! As this is a portfolio project, the business is not yet active, and no payment processing has been enabled.
+              You are invited to test the reservation flow, interactive body charts, and automated workflows without any commitment.</p>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+            <a href="https://chelmassage-1.onrender.com" class="btn btn-outline-light" target="_blank">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <!-- GSAP for animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/easing/EasePack.min.js"></script>
+    <script src="header-animation.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+  </body>
+</html>

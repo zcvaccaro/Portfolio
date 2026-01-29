@@ -1,0 +1,1792 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code Snippets - Zack Vaccaro</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Prism.js CSS (VS Code Dark Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  </head>
+  <body class="snippets-page">
+    <header id="sticky-header" class="visible" style="position: fixed; top: 0; transform: none; opacity: 1;">
+      <div class="sticky-header-left">
+        <h1 class="sticky-title"><a href="index.html" class="text-decoration-none text-reset">Zack Vaccaro</a></h1>
+        <p class="sticky-subtitle"><a href="index.html" class="text-decoration-none text-reset">Code Snippets</a></p>
+      </div>
+      <div class="sticky-header-right">
+        <button class="hamburger-menu" aria-label="Toggle menu">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="sticky-nav-menu">
+            <a href="index.html" class="text-decoration-none text-reset fw-bold mx-2">Home</a>
+            <a href="index.html#projects" class="text-decoration-none text-reset fw-bold mx-2">Projects</a>
+            <a href="index.html#about" class="text-decoration-none text-reset fw-bold mx-2">About Me</a>
+            <a href="index.html#contact" class="text-decoration-none text-reset fw-bold mx-2">Contact</a>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="snip-nav-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                <h2>Development Snippets</h2>
+                <p class="lead">A collection of useful scripts, functions, and styling tricks.</p>
+
+                <!-- Filter Buttons (Framework for future JS implementation) -->
+                <div class="mt-4">
+                    <button class="btn btn-outline-light filter-btn active">All</button>
+                    <button class="btn btn-outline-light filter-btn">Python</button>
+                    <button class="btn btn-outline-light filter-btn">JavaScript</button>
+                    <button class="btn btn-outline-light filter-btn">React</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container" style="margin-top: 280px; min-height: 60vh;">
+        <div class="row justify-content-center">
+
+            <!-- Snippet 1 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Google Calendar Service Authentication</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Authenticates with the Google Calendar API using a Service Account. This function handles credential loading and error handling, returning a built service object ready for API calls.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">def get_calendar_service():
+    """Authenticates and returns a Google Calendar API service object."""
+    creds = None
+    try:
+        creds = Credentials.from_service_account_file(
+            SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    except FileNotFoundError:
+        print(f"Error: The service account key file was not found at '{SERVICE_ACCOUNT_FILE}'.")
+        print("Please make sure the file is in the correct directory and the path is correct.")
+        return None
+    except Exception as e:
+        print(f"An error occurred loading credentials: {e}")
+        return None
+
+    try:
+        service = build('calendar', 'v3', credentials=creds)
+        return service
+    except Exception as e:
+        print(f"An error occurred building the service: {e}")
+        return None</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 2 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Google Sheets Service Authentication</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Similar to the Calendar service, this function authenticates with the Google Sheets API (v4). It demonstrates code reuse patterns for Google Workspace API integration.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">def get_sheets_service():
+    """Authenticates and returns a Google Sheets API service object."""
+    creds = None
+    try:
+        creds = Credentials.from_service_account_file(
+            SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    except FileNotFoundError:
+        print(f"Error: The service account key file was not found at '{SERVICE_ACCOUNT_FILE}'.")
+        return None
+    except Exception as e:
+        print(f"An error occurred loading credentials for Sheets: {e}")
+        return None
+
+    try:
+        service = build('sheets', 'v4', credentials=creds)
+        return service
+    except Exception as e:
+        print(f"An error occurred building the Sheets service: {e}")
+        return None</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 3 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Querying Calendar Free/Busy Information</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Queries the Google Calendar API's `freebusy` endpoint. This is crucial for scheduling applications to determine when a user is available without exposing private event details.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">def get_free_busy(service, start_time, end_time, calendar_ids):
+    """
+    Retrieves free/busy information for a given calendar.
+    """
+    try:
+        body = {
+            "timeMin": start_time,
+            "timeMax": end_time,
+            "items": [{"id": calendar_ids}]
+        }
+        eventsResult = service.freebusy().query(body=body).execute()
+        return eventsResult["calendars"][calendar_ids]["busy"]
+    except HttpError as error:
+        print(F'An error occurred: {error}')
+        return None</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 4 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Creating a Calendar Event</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Creates a new event on a Google Calendar. It handles the JSON structure required by the API, including start/end times in UTC (best practice) and error handling for HTTP exceptions.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">def create_event(service, summary, start_time, end_time, description="", calendar_id='primary'):
+    """Creates a new event on the specified calendar."""
+    event = {
+        'summary': summary,
+        'description': description,
+        'start': {
+            'dateTime': start_time.isoformat(),
+            'timeZone': 'UTC', # It's best practice to work in UTC
+        },
+        'end': {
+            'dateTime': end_time.isoformat(),
+            'timeZone': 'UTC',
+        },
+    }
+
+    try:
+        created_event = service.events().insert(calendarId=calendar_id, body=event).execute()
+        print(f"Event created: {created_event.get('htmlLink')}")
+        return created_event
+    except HttpError as error:
+        print(f'An error occurred: {error}')
+        return None</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 5 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Sending Emails via SMTP with Attachments</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>A robust email sending function using Python's `smtplib`. It supports HTML bodies, secure SSL connections, and binary attachments (like PDFs), using MIME multipart encoding.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">def send_smtp_email(receiver_email, subject, body_html, attachment_data=None, attachment_filename=None):
+    """Sends an email using smtplib and an App Password."""
+    message = MIMEMultipart()
+    message["Subject"] = subject
+    message["From"] = SENDER_EMAIL
+    message["To"] = receiver_email
+    message.attach(MIMEText(body_html, "html"))
+
+    if attachment_data and attachment_filename:
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(attachment_data)
+        encoders.encode_base64(part)
+        part.add_header("Content-Disposition", f"attachment; filename= {attachment_filename}")
+        message.attach(part)
+
+    # Create a secure SSL context
+    context = ssl.create_default_context()
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(SENDER_EMAIL, APP_PASSWORD)
+            server.sendmail(SENDER_EMAIL, receiver_email, message.as_string())
+        print("Email sent successfully!")
+        return True
+    except smtplib.SMTPAuthenticationError:
+        print("SMTP Authentication Error: Failed to login. Check SENDER_EMAIL and APP_PASSWORD.")
+        return False
+    except Exception as e:
+        print(f"An error occurred while sending email: {e}")
+        return False</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 6 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Scanning Calendar for Availability</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Scans a 90-day window on the calendar to find days explicitly marked as "Open for bookings". It parses event objects and returns a sorted list of available dates.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">def _get_available_dates_list(days_to_scan=90):
+    """
+    Internal helper to get a list of dates with "open for bookings" events.
+    Returns a list of strings in 'YYYY-MM-DD' format.
+    """
+    start_date = datetime.datetime.now(timezone.utc)
+    end_date = start_date + timedelta(days=days_to_scan)
+
+    service = get_calendar_service()
+    if not service:
+        print("DEBUG: _get_available_dates_list: Could not get calendar service.")
+        return []
+
+    try:
+        events_result = service.events().list(
+            calendarId=CALENDAR_ID,
+            timeMin=start_date.isoformat(),
+            timeMax=end_date.isoformat(),
+            singleEvents=True
+        ).execute()
+        all_events = events_result.get('items', [])
+
+        available_dates = set()
+        for event in all_events:
+            if event.get('summary', '').lower() == 'open for bookings':
+                if 'dateTime' in event['start']:
+                    available_dates.add(event['start']['dateTime'].split('T')[0])
+                elif 'date' in event['start']:
+                    available_dates.add(event['start']['date'])
+
+        return sorted(list(available_dates))
+    except Exception as e:
+        print(f"ERROR: _get_available_dates_list: Failed to retrieve calendar events: {e}")
+        return []</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 7 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">API Endpoint for Available Days</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>A Flask route that exposes the availability logic as a JSON API. This allows the frontend to dynamically fetch and display available dates to the user.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">@app.route('/api/available-days', methods=['GET'])
+def get_available_days():
+    """
+    Scans a date range and returns a list of dates ('YYYY-MM-DD')
+    that have at least one "open for bookings" event.
+    """
+    available_dates = _get_available_dates_list()
+    return jsonify(available_dates)</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 8 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Complex Time Slot Calculation Logic</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>This function calculates specific time slots for a service. It retrieves "Open" windows and "Busy" blocks, then iterates through time intervals to find slots that fit the service duration + buffer, ensuring no overlaps.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">@app.route('/api/availability', methods=['GET'])
+def get_availability():
+    """
+    API endpoint to get available start times for a given date and service duration.
+    Expects 'date' (YYYY-MM-DD) and 'duration' (in minutes) query parameters.
+    """
+    date_str = request.args.get('date')
+    duration_str = request.args.get('duration')
+
+    if not date_str or not duration_str:
+        return jsonify({"error": "Both 'date' and 'duration' query parameters are required."}), 400
+
+    # --- New Availability Logic ---
+    try:
+        service_duration = int(duration_str)
+        # The total time blocked on the calendar includes a 10-minute buffer.
+        total_block_duration = service_duration + 10
+
+        # Define the time window for the entire day in UTC
+        start_of_day = datetime.datetime.fromisoformat(date_str).replace(hour=0, minute=0, second=0, tzinfo=timezone.utc)
+        end_of_day = start_of_day + timedelta(days=1)
+    except (ValueError, TypeError):
+        return jsonify({
+            "error": "Invalid date or duration format. Date should be YYYY-MM-DD and duration should be an integer."
+        }), 400
+
+    service = get_calendar_service()
+    if not service:
+        return jsonify({"error": "Could not connect to Google Calendar service."}), 500
+
+    try:
+        # 1. Get all events for the day
+        events_result = service.events().list(
+            calendarId=CALENDAR_ID,
+            timeMin=start_of_day.isoformat(),
+            timeMax=end_of_day.isoformat(),
+            singleEvents=True,
+            orderBy='startTime'
+        ).execute()
+        all_events = events_result.get('items', [])
+
+        # 2. Parse all 'open' and 'busy' slots into datetime objects
+        open_windows = []
+        for event in all_events:
+            if event.get('summary', '').lower() == 'open for bookings' and 'dateTime' in event['start']:
+                open_windows.append({
+                    'start': datetime.datetime.fromisoformat(event['start']['dateTime']),
+                    'end': datetime.datetime.fromisoformat(event['end']['dateTime'])
+                })
+
+        busy_slots = []
+        for event in all_events:
+            if event.get('summary', '').lower() != 'open for bookings' and 'dateTime' in event['start']:
+                busy_slots.append({
+                    'start': datetime.datetime.fromisoformat(event['start']['dateTime']),
+                    'end': datetime.datetime.fromisoformat(event['end']['dateTime'])
+                })
+
+        # 3. Generate all possible start times and validate them
+        valid_start_times = []
+        time_slot_interval = timedelta(minutes=15) # Generate slots every 15 minutes
+
+        for window in open_windows:
+            potential_start = window['start']
+            while potential_start < window['end']:
+                potential_end = potential_start + timedelta(minutes=total_block_duration)
+
+                # Ensure the entire appointment (including buffer) fits within the open window
+                if potential_end > window['end']:
+                    break # This slot won't fit, and no later ones will either
+
+                # Check for overlap with any busy slots
+                is_valid = True
+                for busy in busy_slots:
+                    # Overlap condition: (StartA < EndB) and (EndA > StartB)
+                    if potential_start < busy['end'] and potential_end > busy['start']:
+                        is_valid = False
+                        break # Overlaps with a busy slot
+
+                if is_valid:
+                    valid_start_times.append(potential_start.isoformat())
+
+                potential_start += time_slot_interval
+
+        return jsonify(valid_start_times)
+
+    except Exception as e:
+        return jsonify({"error": f"Failed to retrieve calendar events: {e}"}), 500</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 9 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Booking Transaction with Race Condition Check</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Handles the booking submission. It performs a final "double-check" for overlaps (race condition prevention) before creating the event. It also triggers confirmation emails to both the client and the admin.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">@app.route('/api/book', methods=['POST'])
+def book_appointment():
+    """
+    API endpoint to create a new booking event.
+    Expects a JSON payload with start_time, service_duration, summary, and description.
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Invalid JSON payload."}), 400
+
+    try:
+        start_time = datetime.datetime.fromisoformat(data['start_time'])
+        duration = int(data['service_duration'])
+        buffer = 10 # 10 minute buffer
+        end_time = start_time + timedelta(minutes=duration + buffer)
+        summary = data['summary']
+        description = data.get('description', '')
+        client_info = data.get('client', {})
+    except (KeyError, TypeError, ValueError) as e:
+        return jsonify({"error": f"Invalid or missing data in request: {e}"}), 400
+
+    service = get_calendar_service()
+    if not service:
+        return jsonify({"error": "Could not connect to Google Calendar service."}), 500
+
+    # --- Overlap Prevention Logic ---
+    # 1. Define a small window around the event to check for overlaps, just in case.
+    check_start = start_time - timedelta(hours=1)
+    check_end = end_time + timedelta(hours=1)
+
+    try:
+        # 2. Get all events in that window
+        events_result = service.events().list(
+            calendarId=CALENDAR_ID,
+            timeMin=check_start.isoformat(),
+            timeMax=check_end.isoformat(),
+            singleEvents=True
+        ).execute()
+        all_events = events_result.get('items', [])
+
+        # 3. Find all "Busy" events (anything not marked as "open for bookings")
+        busy_slots = [
+            event for event in all_events
+            if event.get('summary', '').lower() != 'open for bookings' and 'dateTime' in event['start']
+        ]
+
+        # 4. Check for overlaps
+        for busy_event in busy_slots:
+            busy_start = datetime.datetime.fromisoformat(busy_event['start']['dateTime'])
+            busy_end = datetime.datetime.fromisoformat(busy_event['end']['dateTime'])
+            # Overlap condition: (StartA < EndB) and (EndA > StartB)
+            if start_time < busy_end and end_time > busy_start:
+                return jsonify({"error": "The selected time slot is no longer available. Please choose another time."}), 409 # 409 Conflict
+
+    except Exception as e:
+        print(f"ERROR: /api/book: Failed during overlap check: {e}")
+        return jsonify({"error": "Could not verify appointment availability. Please try again."}), 500
+
+    # Add client details to the event description
+    full_description = description
+
+    created_event = create_event(service, summary, start_time, end_time, full_description, CALENDAR_ID)
+
+    if not created_event:
+        return jsonify({"error": "Failed to create calendar event."}), 500
+
+    # ... (Email sending logic omitted for brevity in this snippet, but included in full implementation)
+
+    return jsonify({
+        "message": "Booking successful!",
+        "event_link": created_event.get('htmlLink')
+    })</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 10 -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">PDF Generation and Multi-Service Integration</h5>
+                        <span class="badge badge-python">Python</span>
+                    </div>
+                    <div class="card-body">
+                        <p>A comprehensive workflow function. It receives intake form data, generates a PDF using FPDF (including embedding Base64 images), updates a Google Sheet database, and emails the PDF to the admin.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-python">@app.route('/api/submit-intake', methods=['POST'])
+def submit_intake():
+    """
+    API endpoint to receive intake form data, generate a PDF,
+    and email it to the admin.
+    """
+    from fpdf import FPDF
+    from PIL import Image # For handling PNG transparency
+    import io
+
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Invalid JSON payload."}), 400
+
+    try:
+        client_name = f"{data.get('firstName', 'N/A')} {data.get('lastName', 'N/A')}"
+
+        # --- 1. Generate PDF ---
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Helvetica", size=12)
+
+        # ... (Rest of PDF generation, Image embedding, and Sheets update logic)
+
+        return jsonify({"message": "Intake form submitted successfully."}), 200
+
+    except Exception as e:
+        print(f"ERROR: /api/submit-intake: {e}")
+        return jsonify({"error": "Server error while processing the form."}), 500</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 11 (JS 1) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Interactive Particle Network</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Creates a canvas-based animation of connecting nodes (stars) that react to mouse movement and scroll position.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">(function() {
+    var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
+
+    initHeader();
+    initAnimation();
+    addListeners();
+
+    function initHeader() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        target = {x: width/2, y: height/2};
+
+        largeHeader = document.getElementById('large-header');
+        largeHeader.style.height = height+'px';
+
+        canvas = document.getElementById('demo-canvas');
+        canvas.width = width;
+        canvas.height = height;
+        ctx = canvas.getContext('2d');
+
+        points = [];
+        for(var x = 0; x < width; x = x + width/20) {
+            for(var y = 0; y < height; y = y + height/20) {
+                var px = x + Math.random()*width/20;
+                var py = y + Math.random()*height/20;
+                var p = {x: px, originX: px, y: py, originY: py };
+                points.push(p);
+            }
+        }
+
+        for(var i = 0; i < points.length; i++) {
+            var closest = [];
+            var p1 = points[i];
+            for(var j = 0; j < points.length; j++) {
+                var p2 = points[j]
+                if(!(p1 == p2)) {
+                    var placed = false;
+                    for(var k = 0; k < 5; k++) {
+                        if(!placed) {
+                            if(closest[k] == undefined) {
+                                closest[k] = p2;
+                                placed = true;
+                            }
+                        }
+                    }
+                    for(var k = 0; k < 5; k++) {
+                        if(!placed) {
+                            if(getDistance(p1, p2) < getDistance(p1, closest[k])) {
+                                closest[k] = p2;
+                                placed = true;
+                            }
+                        }
+                    }
+                }
+            }
+            p1.closest = closest;
+        }
+
+        for(var i in points) {
+            // Dots are now white
+            var c = new Circle(points[i], 2+Math.random()*2, 'rgba(255,255,255,0.3)');
+            points[i].circle = c;
+        }
+    }
+
+    function addListeners() {
+        if(!('ontouchstart' in window)) {
+            window.addEventListener('mousemove', mouseMove);
+        }
+        window.addEventListener('scroll', scrollCheck);
+        window.addEventListener('resize', resize);
+    }
+
+    function mouseMove(e) {
+        var posx = posy = 0;
+        if (e.pageX || e.pageY) {
+            posx = e.pageX;
+            posy = e.pageY;
+        }
+        else if (e.clientX || e.clientY) {
+            posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+        target.x = posx;
+        target.y = posy;
+    }
+
+    function scrollCheck() {
+        if(document.body.scrollTop > height) animateHeader = false;
+        else animateHeader = true;
+    }
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        largeHeader.style.height = height+'px';
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    function initAnimation() {
+        animate();
+        for(var i in points) {
+            shiftPoint(points[i]);
+        }
+    }
+
+    function animate() {
+        if(animateHeader) {
+            ctx.clearRect(0,0,width,height);
+            for(var i in points) {
+                if(Math.abs(getDistance(target, points[i])) < 4000) {
+                    points[i].active = 0.3;
+                    points[i].circle.active = 0.6;
+                } else if(Math.abs(getDistance(target, points[i])) < 20000) {
+                    points[i].active = 0.1;
+                    points[i].circle.active = 0.3;
+                } else if(Math.abs(getDistance(target, points[i])) < 40000) {
+                    points[i].active = 0.02;
+                    points[i].circle.active = 0.1;
+                } else {
+                    points[i].active = 0;
+                    points[i].circle.active = 0;
+                }
+
+                drawLines(points[i]);
+                points[i].circle.draw();
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function shiftPoint(p) {
+        TweenLite.to(p, 1+1*Math.random(), {
+            x:p.originX-50+Math.random()*100,
+            y: p.originY-50+Math.random()*100,
+            ease:Circ.easeInOut,
+            onComplete: function() {
+                shiftPoint(p);
+            }});
+    }
+
+    function drawLines(p) {
+        if(!p.active) return;
+        for(var i in p.closest) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p.closest[i].x, p.closest[i].y);
+            // Lines are now white
+            ctx.strokeStyle = 'rgba(255,255,255,'+ p.active+')';
+            ctx.stroke();
+        }
+    }
+
+    function Circle(pos,rad,color) {
+        var _this = this;
+        (function() {
+            _this.pos = pos || null;
+            _this.radius = rad || null;
+            _this.color = color || null;
+        })();
+
+        this.draw = function() {
+            if(!_this.active) return;
+            ctx.beginPath();
+            ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
+            // Fill is now white
+            ctx.fillStyle = 'rgba(255,255,255,'+ _this.active+')';
+            ctx.fill();
+        };
+    }
+
+    function getDistance(p1, p2) {
+        return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+    }
+})();</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 12 (JS 2) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">3D Cube Carousel Logic</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Manages a 3D CSS transform-based carousel, handling rotation logic for next/prev buttons and indicators.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const carouselCube = document.querySelector('.carousel-cube');
+if (carouselCube) {
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const indicators = document.querySelectorAll('.indicator');
+    const carouselFaces = document.querySelectorAll('.carousel-face');
+
+    let currentRotation = 0;
+    let currentIndex = 0;
+
+    const cubeWidth = carouselCube.offsetWidth;
+    const translateZ = cubeWidth / 2;
+
+    carouselFaces.forEach((face) => {
+        let angle = 0;
+        if (face.classList.contains('front')) angle = 0;
+        else if (face.classList.contains('right')) angle = 90;
+        else if (face.classList.contains('back')) angle = 180;
+        else if (face.classList.contains('left')) angle = -90;
+        face.style.transform = `rotateY(${angle}deg) translateZ(${translateZ}px)`;
+    });
+
+    function updateCarousel() {
+        carouselCube.style.transform = `translateZ(-${translateZ}px) rotateY(${currentRotation}deg)`;
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    nextBtn.addEventListener('click', () => {
+        currentRotation -= 90;
+        currentIndex = (currentIndex + 1) % carouselFaces.length;
+        updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentRotation += 90;
+        currentIndex = (currentIndex - 1 + carouselFaces.length) % carouselFaces.length;
+        updateCarousel();
+    });
+}</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 13 (JS 3) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Scroll-Linked Header Animation</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Calculates a shrink/fade factor based on scroll position to dynamically resize text and toggle a sticky header.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const animationEndScrollY = window.innerHeight * 0.9;
+    // Calculate the shrink/fade factor. It will be a value from 0 to 1.
+    const shrinkFactor = Math.min(scrollY / animationEndScrollY, 1);
+
+    // Shrink main header text completely
+    const mainSize = 4 * (1 - shrinkFactor);   // goes from 4rem → 0
+    const subSize = 1.8 * (1 - shrinkFactor); // goes from 1.8rem → 0
+    mainTitle.style.fontSize = mainSize + "rem";
+    subtitle.style.fontSize = subSize + "rem";
+
+    // Scale header buttons completely
+    const buttonScale = 1 - shrinkFactor; // goes from 1 → 0
+    headerButtons.style.transform = `translateX(-50%) scale(${buttonScale})`;
+
+    // Fade out text and buttons
+    const fade = 1 - shrinkFactor; // goes from 1 → 0
+    mainTitle.style.opacity = fade;
+    subtitle.style.opacity = fade;
+    headerButtons.style.opacity = fade;
+
+    // Show sticky header after shrink threshold
+    if (shrinkFactor >= 0.5) {
+        stickyHeader.classList.add("visible");
+    } else {
+        stickyHeader.classList.remove("visible");
+    }
+});</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 14 (JS 4) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Expandable Card Animation (FLIP)</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Implements a complex UI transition where a card is cloned, positioned absolutely, and expanded to fill the screen using the Web Animations API.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const onCardClick = async (e) => {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    originalCard = e.currentTarget;
+    const { top, left, width, height } = originalCard.getBoundingClientRect();
+
+    // 1. Create and position the clone
+    const cardClone = originalCard.cloneNode(true);
+    cardClone.style.position = 'fixed';
+    cardClone.style.top = `${top}px`;
+    cardClone.style.left = `${left}px`;
+    cardClone.style.width = `${width}px`;
+    cardClone.style.height = `${height}px`;
+    cardClone.style.zIndex = '2000';
+    cardClone.style.margin = '0';
+
+    // 2. Hide original card and show overlay
+    originalCard.style.opacity = '0';
+    document.body.appendChild(cardClone);
+    overlay.style.display = 'block';
+    overlay.style.pointerEvents = 'auto';
+    requestAnimationFrame(() => overlay.style.opacity = '1');
+
+    // 3. Animate the clone expanding
+    await animateCard(cardClone, [
+        { top: `${top}px`, left: `${left}px`, width: `${width}px`, height: `${height}px` },
+        { top: '50%', left: '50%', width: '70vw', height: '60vh', transform: 'translate(-50%, -50%)' }
+    ], { duration: 400, easing: 'ease-in-out', fill: 'forwards' });
+
+    isAnimating = false;
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 15 (JS 5) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Drawable Canvas Component</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Initializes a canvas over an image, allowing users to draw (e.g., on a body chart) with support for touch events and an undo history.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const setupCanvas = (containerId) => {
+    const container = document.getElementById(containerId);
+    const image = container.querySelector("img");
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    let isDrawing = false;
+    let history = [];
+
+    const startDrawing = (e) => {
+        e.preventDefault();
+        isDrawing = true;
+        const { x, y } = getCoords(e);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    };
+
+    const draw = (e) => {
+        if (!isDrawing) return;
+        e.preventDefault();
+        const { x, y } = getCoords(e);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    };
+
+    const stopDrawing = () => {
+        if (isDrawing) {
+            ctx.closePath();
+            isDrawing = false;
+            history.push(canvas.toDataURL()); // Save state
+        }
+    };
+
+    canvas.addEventListener("mousedown", startDrawing);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseup", stopDrawing);
+    canvas.addEventListener("touchstart", startDrawing);
+    canvas.addEventListener("touchmove", draw);
+    canvas.addEventListener("touchend", stopDrawing);
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 16 (JS 6) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Canvas Layer Merging</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Combines a background image and a user's drawing from a separate canvas into a single Data URL for form submission.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const getCombinedCanvasData = (containerId) => {
+    const container = document.getElementById(containerId);
+    const image = container.querySelector('img');
+    const drawingCanvas = container.querySelector('canvas');
+
+    // Create a temporary canvas to merge the image and the drawing
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCanvas.width = image.naturalWidth; // Use natural dimensions for best quality
+    tempCanvas.height = image.naturalHeight;
+
+    // Draw the background image first, then the user's drawing on top
+    tempCtx.drawImage(image, 0, 0);
+    tempCtx.drawImage(drawingCanvas, 0, 0, tempCanvas.width, tempCanvas.height);
+
+    return tempCanvas.toDataURL('image/png');
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 17 (JS 7) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Dynamic Availability Fetching</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Fetches available time slots from an API based on a selected date and service duration, populating a dropdown dynamically.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const fetchAndDisplayAvailability = async () => {
+    const selectedDate = dateInput._flatpickr.selectedDates[0];
+    const duration = lengthSelect.value;
+
+    if (!selectedDate || !duration) return;
+
+    timeSelect.innerHTML = '&lt;option&gt;Fetching times...&lt;/option&gt;';
+    timeSelect.disabled = true;
+
+    try {
+        const dateStr = selectedDate.toISOString().split('T')[0];
+        const response = await fetch(`/api/availability?date=${dateStr}&duration=${duration}`);
+        const availableTimes = await response.json();
+        
+        populateTimeSlots(availableTimes);
+    } catch (error) {
+        console.error('Error fetching availability:', error);
+        timeSelect.innerHTML = '&lt;option&gt;Could not load times.&lt;/option&gt;';
+    }
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 18 (JS 8) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Credit Card Input Formatting</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Automatically formats credit card numbers with spaces and expiry dates with slashes as the user types.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">if (cardNumberInput) {
+    cardNumberInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+        if (value.length > 16) value = value.slice(0, 16);
+        // Add a space after every 4 digits
+        e.target.value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    });
+}
+
+if (cardExpiryInput) {
+    cardExpiryInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2) + '/' + value.slice(2, 4); // Insert slash
+        }
+        e.target.value = value;
+    });
+}</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 19 (JS 9) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Custom Terms Validation</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Adds custom validation logic to a checkbox, preventing form submission and displaying a custom error message if unchecked.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">form.addEventListener('submit', (event) => {
+    if (!form.checkValidity()) return;
+
+    if (!agreeTermsCheckbox.checked) {
+        event.preventDefault();
+        agreeTermsText.style.color = 'var(--accent-color-dark)';
+        errorMessage.style.display = 'block';
+    }
+});
+
+agreeTermsCheckbox.addEventListener('change', () => {
+    agreeTermsText.style.color = ''; 
+    errorMessage.style.display = 'none';
+});</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 20 (JS 10) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Smooth Scroll with Offset</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Intercepts anchor link clicks to perform a smooth scroll, calculating the correct position to account for a fixed sticky header.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            const headerOffset = 101; // Height of sticky header
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    });
+});</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 21 (JS 11) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Flatpickr Integration with Whitelist</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Initializes the Flatpickr date picker, fetching available dates from an API to whitelist selectable days.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const initializeDatePicker = async () => {
+    try {
+        const response = await fetch('/api/available-days?range=90');
+        const availableDays = await response.json();
+
+        flatpickr("#date", {
+            minDate: "today",
+            enable: availableDays, // Whitelist enabled dates
+            onChange: function(selectedDates) {
+                fetchAndDisplayAvailability();
+            }
+        });
+    } catch (error) {
+        console.error("Failed to initialize date picker:", error);
+    }
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 22 (JS 12) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Async Form Submission with Redirect</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Handles a booking form submission via Fetch API, managing loading states, error handling, and redirection with URL parameters.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">bookingForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitButton = bookingForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+
+    try {
+        const response = await fetch('/api/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error('Booking failed');
+
+        // Redirect with params
+        const params = new URLSearchParams({ /* ... data ... */ });
+        window.location.href = `/BookingConfirm.html?${params.toString()}`;
+
+    } catch (error) {
+        alert(`Booking failed: ${error.message}`);
+        submitButton.disabled = false;
+    }
+});</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 23 (JS 13) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Self-Contained Loading Overlay</h5>
+                        <span class="badge badge-js">JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Dynamically injects a full-screen loading spinner with styles and animation, providing a simple way to block interaction during async tasks.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-javascript">const toggleGlobalLoader = (show) => {
+    let loader = document.getElementById('dynamic-loader');
+    
+    if (!loader) {
+        // Create loader container
+        loader = document.createElement('div');
+        loader.id = 'dynamic-loader';
+        Object.assign(loader.style, {
+            position: 'fixed', top: '0', left: '0', width: '100%', height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: '9999',
+            display: 'none', justifyContent: 'center', alignItems: 'center',
+            opacity: '0', transition: 'opacity 0.3s ease'
+        });
+
+        // Create spinner element
+        const spinner = document.createElement('div');
+        Object.assign(spinner.style, {
+            width: '50px', height: '50px',
+            border: '5px solid #f3f3f3', borderTop: '5px solid #3498db',
+            borderRadius: '50%'
+        });
+        
+        // Add animation via Web Animations API (no external CSS needed)
+        spinner.animate([
+            { transform: 'rotate(0deg)' },
+            { transform: 'rotate(360deg)' }
+        ], { duration: 1000, iterations: Infinity });
+
+        loader.appendChild(spinner);
+        document.body.appendChild(loader);
+    }
+
+    if (show) {
+        loader.style.display = 'flex';
+        requestAnimationFrame(() => loader.style.opacity = '1');
+    } else {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 300);
+    }
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 24 (React 1) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Multi-Category, Multi-API Search Handler</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Asynchronously fetches and merges data from multiple APIs based on search category, using conditional logic and data transformation.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const handleSearch = async (query, category = 'all') => {
+  if (!query.trim()) return;
+  setSearchResults([]); // Clear previous results immediately
+  setIsSearchLoading(true);
+  try {
+    let results = [];
+    if (category === 'all') {
+      const multiResults = await searchMulti(query);
+      const personResult = multiResults.results?.find(r => r.media_type === 'person');
+
+      if (personResult) {
+        // If a person is found, get their movie credits and filter by director.
+        const credits = await getPersonMovieCredits(personResult.id);
+        results = credits.crew
+          .filter(movie => movie.job === 'Director')
+          .map(movie => ({ ...movie, type: 'movie' }));
+      } else {
+        // Fetch multiple pages for general 'all' search
+        results = multiResults.results.filter(
+          item => item.media_type === 'movie' || item.media_type === 'tv'
+        ).map(item => ({
+          ...item,
+          type: item.media_type, // 'movie' or 'tv'
+        }));
+      }
+
+      const bookResults = await searchBooks(query);
+      results = results.concat(bookResults);
+    } else if (category === 'director') {
+      // ... specific category logic
+    }
+    // ... more categories
+
+    // Sort and set results
+    results.sort(/* ... */);
+    setSearchResults(results);
+
+  } catch (error) {
+    console.error('Error during search:', error);
+    toast({ /* ... */ });
+  } finally {
+    setIsSearchLoading(false);
+  }
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 25 (React 2) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Concurrent API Pagination Fetcher</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Efficiently fetches multiple API pages concurrently using `Promise.all` to significantly speed up data retrieval.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const fetchAllPages = async (searchFunction, query) => {
+  const totalPagesToFetch = 3; // Fetch first 3 pages
+  const pagePromises = [];
+  for (let page = 1; page <= totalPagesToFetch; page++) {
+    pagePromises.push(searchFunction(query, page));
+  }
+
+  const pages = await Promise.all(pagePromises);
+  let allResults = [];
+  pages.forEach(pageData => {
+    if (pageData && pageData.results) {
+      allResults = allResults.concat(pageData.results);
+    }
+  });
+  return allResults;
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 26 (React 3) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">State Initialization and Persistence with useEffect</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Initializes state from `localStorage` and uses `useEffect` to automatically persist changes across sessions.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const [movieWatchlist, setMovieWatchlist] = useState(getWatchlist);
+const [showWatchlist, setShowWatchlist] = useState(getShowWatchlist);
+const [readingList, setReadingList] = useState(() => JSON.parse(localStorage.getItem('readingList')) || []);
+
+useEffect(() => {
+  saveWatchlist(movieWatchlist);
+}, [movieWatchlist]);
+
+useEffect(() => {
+  saveShowWatchlist(showWatchlist);
+}, [showWatchlist]);
+
+useEffect(() => {
+  localStorage.setItem('readingList', JSON.stringify(readingList));
+}, [readingList]);</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 27 (React 4) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Custom Sorting Logic for Heterogeneous Data</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Sorts mixed media types, prioritizing movies/TV by popularity while preserving original API relevance for books.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">results.sort((a, b) => {
+  const isABook = a.type === 'book';
+  const isBBook = b.type === 'book';
+
+  // If one is a book and the other isn't, the non-book (movie/TV) comes first.
+  if (isABook && !isBBook) return 1;
+  if (!isABook && isBBook) return -1;
+
+  // If both are books, don't re-sort them. Maintain API's relevance order.
+  if (isABook && isBBook) return 0;
+
+  // Otherwise, sort movies/TV shows by popularity.
+  const popularityA = a.popularity || 0;
+  const popularityB = b.popularity || 0;
+  return popularityB - popularityA;
+});</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 28 (React 5) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Dynamic and Conditional Search Results UI</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Conditionally renders a loading spinner or a grid of result cards, using dynamic keys for mixed media types.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">&lt;Route
+  path="/search"
+  element={
+    isSearchLoading ? (
+      &lt;VStack justify="center" align="center" height="50vh"&gt;
+        &lt;Spinner size="xl" /&gt;
+        &lt;Text&gt;Searching...&lt;/Text&gt;
+      &lt;/VStack&gt;
+    ) : (
+      &lt;VStack spacing={6} pt={6} pb={10} overflowX="hidden"&gt;
+        &lt;SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing={6} w="100%"&gt;
+          {searchResults.map((item) =&gt; (
+            &lt;SearchResultCard
+              key={`${item.type}-${item.id || item.isbn}`}
+              item={item}
+              onAdd={() =&gt; handleAddItemToWatchlist(item)}
+              onRemove={(itemToRemove) =&gt; { /* ... */ }}
+              onClick={handleSelectItem}
+              inWatchlist={
+                (item.type === 'movie' && movieWatchlistIds.has(item.id)) ||
+                (item.type === 'tv' && showWatchlistIds.has(item.id)) ||
+                (item.type === 'book' && readingListIsbns.has(item.isbn))
+              }
+            /&gt;
+          ))}
+        &lt;/SimpleGrid&gt;
+      &lt;/VStack&gt;
+    )
+  }
+/&gt;</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 29 (React 6) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Abstracted Watchlist "Add" Handler</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Delegates "add" actions to specific handlers based on item type, keeping logic organized.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const handleAddItemToWatchlist = (item) => {
+  if (item.type === 'movie') {
+    handleAddMovieToWatchlist(item);
+  } else if (item.type === 'tv') {
+    handleAddShowToWatchlist(item);
+  } else if (item.type === 'book') {
+    handleAddBookToWatchlist(item);
+  }
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 30 (React 7) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">State Management for Modals</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Manages modal visibility using state variables that hold the selected item to control the `isOpen` prop.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const [selectedMovie, setSelectedMovie] = useState(null);
+const [selectedShow, setSelectedShow] = useState(null);
+const [selectedBook, setSelectedBook] = useState(null);
+
+// ...
+
+const handleSelectItem = (item) => {
+  if (item.type === 'movie') {
+    setSelectedMovie(item);
+  } else if (item.type === 'tv') {
+    setSelectedShow(item);
+  } else if (item.type === 'book') {
+    handleSelectBook(item);
+  }
+};
+
+const handleCloseModal = () => { 
+  setSelectedMovie(null); 
+  setSelectedShow(null); 
+  setSelectedBook(null); 
+};
+
+// ... in JSX
+{selectedMovie && (
+  &lt;MovieModal
+    movie={selectedMovie}
+    isOpen={!!selectedMovie}
+    onClose={handleCloseModal}
+    // ... other props
+  /&gt;
+)}</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 31 (React 8) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Complex User Flow: In-Modal Action Triggering Navigation</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Closes a modal, triggers a new search, and navigates to results, handling multi-step async interactions.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const handlePersonSearch = (name, category) => {
+  handleCloseModal();
+  setTimeout(() => {
+    handleSearch(name, category);
+    setNeedsNav(true); // Trigger navigation
+  }, 100);
+};
+
+// ... in JSX
+{needsNav && &lt;NavigateToSearch onNavigate={() => setNeedsNav(false)} /&gt;}</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 32 (React 9) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Immutable State Update with User Feedback</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Immutably updates state using the previous value and displays a toast notification for user feedback.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const handleAddMovieToWatchlist = (movie) => {
+  if (!movieWatchlist.some((m) => m.id === movie.id)) {
+    setMovieWatchlist((prev) => [...prev, movie]);
+    toast({
+      title: `${movie.title} added to watchlist.`,
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+};</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 33 (React 10) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Optimized Watchlist Lookups</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Uses `Set` objects for O(1) lookup performance when checking if items exist in a watchlist.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">const movieWatchlistIds = new Set(movieWatchlist.map(m => m.id));
+const showWatchlistIds = new Set(showWatchlist.map(s => s.id));
+const readingListIsbns = new Set(readingList.map(b => b.isbn));
+
+// ... in JSX for SearchResultCard
+inWatchlist={
+  (item.type === 'movie' && movieWatchlistIds.has(item.id)) ||
+  (item.type === 'tv' && showWatchlistIds.has(item.id)) ||
+  (item.type === 'book' && readingListIsbns.has(item.isbn))
+}</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 34 (React 11) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-left">
+                    <div class="card-header">
+                        <h5 class="mb-0">Director-Specific Search Logic</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Chains asynchronous requests to find a person, fetch their credits, and filter specifically for director roles.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">if (category === 'director') {
+  const multiResults = await searchMulti(query);
+  const personResult = multiResults.results?.find(r => r.media_type === 'person');
+  if (personResult) {
+    const credits = await getPersonMovieCredits(personResult.id);
+    results = credits.crew
+      .filter(movie => movie.job === 'Director')
+      .map(movie => ({ ...movie, type: 'movie' }));
+  }
+}</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snippet 35 (React 12) -->
+            <div class="col-lg-10">
+                <div class="card snippet-card" data-aos="fade-up-right">
+                    <div class="card-header">
+                        <h5 class="mb-0">Component-Based Routing Structure</h5>
+                        <span class="badge badge-react">React</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Defines application structure using `react-router-dom`, mapping paths to components and passing props.</p>
+                        <div class="code-wrapper">
+                            <pre><code class="language-jsx">&lt;Router&gt;
+  &lt;Header onSearch={handleSearch} /&gt;
+  &lt;Container maxW="container.xl" overflowX="hidden"&gt;
+    &lt;Routes&gt;
+      &lt;Route path="/" element={&lt;Homepage /&gt;} /&gt;
+
+      &lt;Route
+        path="/movies/foryou"
+        element={&lt;MovieForYou
+            watchlist={movieWatchlist}
+            onAddToWatchlist={handleAddMovieToWatchlist}
+            onRemoveFromWatchlist={handleRemoveMovieFromWatchlist}
+            onSelect={setSelectedMovie}
+          /&gt;}
+      /&gt;
+
+      &lt;Route
+        path="/tvshows/watchlist"
+        element={&lt;ShowWatchlist
+            watchlist={showWatchlist}
+            onRemove={handleRemoveShowFromWatchlist}
+            onSelect={setSelectedShow}
+          /&gt;}
+      /&gt;
+      
+      {/* ... more routes */}
+    &lt;/Routes&gt;
+  &lt;/Container&gt;
+  {/* ... Modals */}
+&lt;/Router&gt;</code></pre>
+                            <div class="fade-overlay"></div>
+                        </div>
+                        <button class="toggle-btn" onclick="toggleCode(this)">Show Full Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Me Footer -->
+    <footer class="footer mt-5 py-4 bg-dark text-white" id="contact">
+      <div class="container text-center">
+        <h4 class="mb-3">Contact Me</h4>
+        <p>Email: <a href="mailto:zcvaccaro@gmail.com" class="text-white text-decoration-underline">zcvaccaro@gmail.com</a></p>
+        <div class="d-flex justify-content-center gap-4 mt-3">
+          <a href="https://github.com/yourusername" target="_blank" class="text-white fs-4"><i class="bi bi-github"></i></a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
+        </div>
+        <p class="mt-4 small">&copy; 2025 Zack Vaccaro. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Prism.js Core and Languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, // Duration of animation in ms
+        offset: 120,    // Offset (in px) from the original trigger point
+        easing: 'ease-in-out', // Default easing
+        once: false,     // Whether animation should happen only once
+        mirror: true,   // Whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-top',
+      });
+
+      // Toggle Code Function
+      function toggleCode(btn) {
+            // Find the previous sibling element (the code-wrapper)
+            const wrapper = btn.previousElementSibling;
+            const pre = wrapper.querySelector('pre');
+            const overlay = wrapper.querySelector('.fade-overlay');
+
+            // Toggle the 'expanded' class
+            pre.classList.toggle('expanded');
+
+            // Update UI based on state
+            if (pre.classList.contains('expanded')) {
+                btn.textContent = "Collapse Code";
+                overlay.classList.add('hidden');
+            } else {
+                btn.textContent = "Show Full Code";
+                overlay.classList.remove('hidden');
+            }
+        }
+
+      // Filter Logic
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const snippetCards = document.querySelectorAll('.col-lg-10'); // Selects the columns containing cards
+
+      filterButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+              // 1. Update Active State
+              filterButtons.forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              // 2. Get Filter Category
+              const filter = btn.textContent.trim();
+
+              // 3. Loop through cards and show/hide
+              snippetCards.forEach(cardCol => {
+                  const badge = cardCol.querySelector('.badge');
+                  if (!badge) return;
+
+                  const badgeText = badge.textContent.trim();
+                  
+                  if (filter === 'All') {
+                      cardCol.style.display = '';
+                  } else if (filter === badgeText) {
+                      cardCol.style.display = '';
+                  } else {
+                      cardCol.style.display = 'none';
+                  }
+              });
+
+              // 4. Refresh AOS to handle layout changes
+              setTimeout(() => {
+                  AOS.refresh();
+              }, 100);
+          });
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
