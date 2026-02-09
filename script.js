@@ -161,4 +161,65 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', setCarouselHeight);
     setCarouselHeight(); // Set height on initial load
   }
+
+  /* ==============================
+     Snippets Page Logic
+     ============================== */
+  
+  // Filter Logic
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const snippetCards = document.querySelectorAll('.col-lg-10'); // Selects the columns containing cards
+
+  if (filterButtons.length > 0) {
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 1. Update Active State
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 2. Get Filter Category
+        const filter = btn.textContent.trim();
+
+        // 3. Loop through cards and show/hide
+        snippetCards.forEach(cardCol => {
+          const badge = cardCol.querySelector('.badge');
+          if (!badge) return;
+
+          const badgeText = badge.textContent.trim();
+
+          if (filter === 'All') {
+            cardCol.style.display = '';
+          } else if (filter === badgeText) {
+            cardCol.style.display = '';
+          } else {
+            cardCol.style.display = 'none';
+          }
+        });
+
+        // 4. Refresh AOS to handle layout changes
+        if (typeof AOS !== 'undefined') {
+          setTimeout(() => {
+            AOS.refresh();
+          }, 100);
+        }
+      });
+    });
+  }
 });
+
+// Global function for the "Show Full Code" buttons (called via onclick in HTML)
+window.toggleCode = function(btn) {
+  const wrapper = btn.previousElementSibling;
+  const pre = wrapper.querySelector('pre');
+  const overlay = wrapper.querySelector('.fade-overlay');
+
+  pre.classList.toggle('expanded');
+
+  if (pre.classList.contains('expanded')) {
+    btn.textContent = "Collapse Code";
+    overlay.classList.add('hidden');
+  } else {
+    btn.textContent = "Show Full Code";
+    overlay.classList.remove('hidden');
+  }
+};

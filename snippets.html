@@ -1804,62 +1804,6 @@ inWatchlist={
         mirror: true,   // Whether elements should animate out while scrolling past them
         anchorPlacement: 'top-top',
       });
-
-      // Toggle Code Function
-      function toggleCode(btn) {
-            // Find the previous sibling element (the code-wrapper)
-            const wrapper = btn.previousElementSibling;
-            const pre = wrapper.querySelector('pre');
-            const overlay = wrapper.querySelector('.fade-overlay');
-
-            // Toggle the 'expanded' class
-            pre.classList.toggle('expanded');
-
-            // Update UI based on state
-            if (pre.classList.contains('expanded')) {
-                btn.textContent = "Collapse Code";
-                overlay.classList.add('hidden');
-            } else {
-                btn.textContent = "Show Full Code";
-                overlay.classList.remove('hidden');
-            }
-        }
-
-      // Filter Logic
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const snippetCards = document.querySelectorAll('.col-lg-10'); // Selects the columns containing cards
-
-      filterButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
-              // 1. Update Active State
-              filterButtons.forEach(b => b.classList.remove('active'));
-              btn.classList.add('active');
-
-              // 2. Get Filter Category
-              const filter = btn.textContent.trim();
-
-              // 3. Loop through cards and show/hide
-              snippetCards.forEach(cardCol => {
-                  const badge = cardCol.querySelector('.badge');
-                  if (!badge) return;
-
-                  const badgeText = badge.textContent.trim();
-                  
-                  if (filter === 'All') {
-                      cardCol.style.display = '';
-                  } else if (filter === badgeText) {
-                      cardCol.style.display = '';
-                  } else {
-                      cardCol.style.display = 'none';
-                  }
-              });
-
-              // 4. Refresh AOS to handle layout changes
-              setTimeout(() => {
-                  AOS.refresh();
-              }, 100);
-          });
-      });
     </script>
     <script src="script.js"></script>
   </body>
