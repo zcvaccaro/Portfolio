@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ==============================
      Snippets Page Logic
      ============================== */
-  
+
   // Filter Logic
   const filterButtons = document.querySelectorAll('.filter-btn');
   const snippetCards = document.querySelectorAll('.col-lg-10'); // Selects the columns containing cards
