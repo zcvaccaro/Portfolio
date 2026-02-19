@@ -532,9 +532,9 @@ footer p { margin-top: 10px; }
     font-family: 'Courier New', Courier, monospace;
     border: 1px solid #444;
 }
-.badge-python { background-color: #3776ab; color: white; }
+.badge-python { background-color: #3776ab; color: rgb(0, 0, 0); }
 .badge-js { background-color: #f7df1e; color: black; }
-.badge-react { background-color: #15b686; color: white; }
+.badge-react { background-color: #15b686; color: rgb(0, 0, 0); }
 
 .filter-btn {
     margin: 0 5px;
