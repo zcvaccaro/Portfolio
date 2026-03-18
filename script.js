@@ -12,42 +12,47 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentRotation = 0;
     let currentIndex = 0;
 
+    // Dynamic calculation for any number of faces (Pentagon, Hexagon, etc.)
+    const cellCount = carouselFaces.length;
+    const theta = 360 / cellCount;
     const cubeWidth = carouselCube.offsetWidth;
-    const translateZ = cubeWidth / 2;
+    // Calculate distance from center to face (apothem)
+    const translateZ = Math.round((cubeWidth / 2) / Math.tan(Math.PI / cellCount));
 
-    carouselFaces.forEach((face) => {
-      let angle = 0;
-      if (face.classList.contains('front')) angle = 0;
-      else if (face.classList.contains('right')) angle = 90;
-      else if (face.classList.contains('back')) angle = 180;
-      else if (face.classList.contains('left')) angle = -90;
+    carouselFaces.forEach((face, i) => {
+      const angle = theta * i;
       face.style.transform = `rotateY(${angle}deg) translateZ(${translateZ}px)`;
     });
 
     function updateCarousel() {
       carouselCube.style.transform = `translateZ(-${translateZ}px) rotateY(${currentRotation}deg)`;
       indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentIndex);
+        // Handle wrapping for negative/large indices
+        const normalizedIndex = (currentIndex % cellCount + cellCount) % cellCount;
+        indicator.classList.toggle('active', index === normalizedIndex);
       });
     }
 
     nextBtn.addEventListener('click', () => {
-      currentRotation -= 90;
-      currentIndex = (currentIndex + 1) % carouselFaces.length;
+      currentRotation -= theta;
+      currentIndex++;
       updateCarousel();
     });
 
     prevBtn.addEventListener('click', () => {
-      currentRotation += 90;
-      currentIndex = (currentIndex - 1 + carouselFaces.length) % carouselFaces.length;
+      currentRotation += theta;
+      currentIndex--;
       updateCarousel();
     });
 
     indicators.forEach((indicator) => {
       indicator.addEventListener('click', (e) => {
         const targetIndex = parseInt(e.target.dataset.slideIndex);
-        const rotationDiff = targetIndex - currentIndex;
-        currentRotation -= rotationDiff * 90;
+        // Calculate simple difference based on current logical index
+        let currentNormalized = (currentIndex % cellCount + cellCount) % cellCount;
+        let diff = targetIndex - currentNormalized;
+        
+        currentRotation -= diff * theta;
         currentIndex = targetIndex;
         updateCarousel();
       });
